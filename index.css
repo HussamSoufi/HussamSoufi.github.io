@@ -3,7 +3,7 @@
 body {
     padding:0px;
     margin:0px;
-    background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("https://images.unsplash.com/photo-1491956175078-460aea0914ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1550&q=80") center center;
+    background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("redClouds.jpg") center center;
     background-size:cover;
     width:100vw;
     height:100vh;
@@ -14,7 +14,7 @@ body {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background:rgb(255, 50, 50);
+    background:rgba(151, 24, 24, 0.78);
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -26,7 +26,7 @@ body {
     width:50px;
     height:50px;
     border:12px solid #fff;
-    border-bottom:12px solid rgb(255, 50, 50);
+    border-bottom:12px solid rgb(151, 24, 24, 0.78);
     border-radius:50%;
     margin:0;
 }
@@ -47,10 +47,10 @@ body {
     display:inline-block;
 }
 .box1 {
-    background:rgb(255, 50, 50);
+    background:rgb(151, 24, 24, 0.78);
 }
 .box2 {
-    background:rgb(255, 50, 50);
+    background:rgb(151, 24, 24, 0.78);
     margin-left:-5px;
 }
 #menu {
@@ -79,9 +79,8 @@ body {
     padding-bottom:10vh;
 }
 #middle h1 {
-    color:rgb(255, 50, 50);
+    color:rgba(185, 50, 50, 0.753);
     font-size:70px;
-    text-decoration:underline;
 }
 #about {
     width:10vw;
@@ -137,15 +136,15 @@ body {
     border-radius:100px 100px 0px 0px;
 }
 #about:hover {
-    background:rgba(255,50,50,0.9);
+    background:rgba(151, 24, 24, 0.78);
     cursor:pointer;
 }
 #work:hover {
-    background:rgba(255,50,50,0.9);
+    background:rgba(151, 24, 24, 0.78);
     cursor:pointer;
 }
 #contact:hover {
-    background:rgba(255,50,50,0.9);
+    background:rgba(151, 24, 24, 0.78);
     cursor:pointer;
 }
 #middle table {
@@ -165,13 +164,13 @@ body {
 }
 .social:hover { 
     cursor: pointer;
-    color:rgb(255, 50, 50);
+    color:rgb(240, 8, 8);
 }
 .container {
     width:90vw;
     height:90vh;
     padding:5vh 5vw;
-    background:rgb(255, 50, 50);
+    background:rgba(99, 20, 20, 0.835);
     color:#fff;
     z-index:9;
     position:fixed;
@@ -206,7 +205,6 @@ body {
 }
 .container h1 {
     font-size:60px;
-    text-decoration:underline;
 }
 .container p {
     font-size:21px;
@@ -225,13 +223,13 @@ body {
 }
 .btn_one:hover {
     cursor:pointer;
-    color:rgb(255, 50, 50);
+    color:rgb(151, 24, 24, 0.78);
     background:#fff;
 }
 .btn_two {
     font-size:18px;
     font-family: 'Josefin Sans', sans-serif;
-    color:rgb(255, 50, 50);
+    color:rgb(151, 24, 24, 0.78);
     background:#fff;
     border:3px solid #fff;
     padding:8px 40px;
@@ -295,7 +293,7 @@ body {
     font-weight:bold;
 }
 #footer a {
-    color:rgb(255, 50, 50) ;
+    color:rgb(151, 24, 24, 0.78) ;
 }
 #particles-js {
     position:fixed;
@@ -310,14 +308,14 @@ body {
     background: #fff; 
 }
 ::-webkit-scrollbar-thumb {
-    background: rgb(255, 50, 50); 
+    background: rgb(151, 24, 24, 0.78); 
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 50, 50,0.8); 
+    background: rgba(151, 24, 24, 0.78,0.8); 
 }
 ::selection {
 	color: #fff;
-	background: rgb(255, 50, 50);
+	background: rgb(151, 24, 24, 0.78);
 }
 
 @media (max-width: 800px){ 
