@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rodan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div id="magnify">
+        <h1 onclick="closemagnify()"><i class="fas fa-times"></i></h1>
+        <div id="img_here"></div>
+    </div>
+    <header id="header" class="animated slideInDown" style="animation-delay:1.8s;">
+        <table>
+            <tr>
+                <td id="logo">Rodan.</td>
+                <td id="navigation">
+                    <a href="#bio">Home</a>
+                    <a href="#work">Catalog</a>
+                    <a href="#bio">about</a>
+                    <a href="#contact">contact</a>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <table id="top_part">
+        <tr>
+            <td id="about" class="animated slideInLeft" style="animation-delay:2s;">
+                <h1>Purses Catalog by Rodan.</h1>
+                <table>
+                    <tr>
+                        <td class="animated zoomIn" style="animation-delay:2.2s;"><a class="social"><i
+                                    class="fab fa-facebook"></i></a></td>
+                        <td class="animated zoomIn" style="animation-delay:2.4s;"><a class="social"><i
+                                    class="fab fa-twitter"></i></a></td>
+                        <td class="animated zoomIn" style="animation-delay:2.6s;"><a class="social"><i
+                                    class="fab fa-instagram"></i></a></td>
+                    </tr>
+                </table>
+            </td>
+            <td id="rightImage" class="animated jackInTheBox" style="animation-delay:2.2s;"></td>
+        </tr>
+    </table>
+    <div id="work">
+        <h1>Purses Catalog</h1>
+        <div id="photos">
+            <img onclick="magnify($(this).attr('src'))" src="./1.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./2.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./3.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./8.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./4.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./5.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./6.PNG">
+            <img onclick="magnify($(this).attr('src'))" src="./7.PNG">
+        </div>
+    </div>
+
+    <div id="footer">
+                All rights reserved By RodanLederDesign  &#169;
+    </div>
+    <script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
