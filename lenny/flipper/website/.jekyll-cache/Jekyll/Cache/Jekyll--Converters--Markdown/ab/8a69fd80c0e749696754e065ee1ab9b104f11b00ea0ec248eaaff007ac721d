@@ -1,0 +1,99 @@
+I"R)<p>PhotoSwipe does not force any HTML markup, you have full control. Simplest markup is a list of thumbnails that link to large image, simplest example:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"large-image.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"small-image.jpg"</span> <span class="na">alt=</span><span class="s">"Image description"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+...
+</code></pre></div></div>
+
+<p>If you have long caption that doesn’t fit in <code class="language-plaintext highlighter-rouge">alt</code> or it just contains HTML tags, you may use <code class="language-plaintext highlighter-rouge">&lt;figure&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;figcaption&gt;</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;figure&gt;</span>
+	<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"large-image.jpg"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"small-image.jpg"</span> <span class="na">alt=</span><span class="s">"Image description"</span> <span class="nt">/&gt;</span>
+	<span class="nt">&lt;/a&gt;</span>
+	<span class="nt">&lt;figcaption&gt;</span>Long image description<span class="nt">&lt;/figcaption&gt;</span>
+<span class="nt">&lt;/figure&gt;</span>
+...
+</code></pre></div></div>
+
+<p>You can go further and use <a href="http://schema.org/ImageGallery">Schema.org markup for ImageGallery</a> and <a href="http://schema.org/ImageObject">ImageObject</a>, it should look like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ImageGallery"</span><span class="nt">&gt;</span>
+
+	<span class="nt">&lt;figure</span> <span class="na">itemprop=</span><span class="s">"associatedMedia"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ImageObject"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"large-image.jpg"</span> <span class="na">itemprop=</span><span class="s">"contentUrl"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"small-image.jpg"</span> <span class="na">itemprop=</span><span class="s">"thumbnail"</span> <span class="na">alt=</span><span class="s">"Image description"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+
+		<span class="c">&lt;!-- optionally use this method to store image dimensions for PhotoSwipe --&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">itemprop=</span><span class="s">"width"</span> <span class="na">content=</span><span class="s">"300"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">itemprop=</span><span class="s">"height"</span> <span class="na">content=</span><span class="s">"600"</span><span class="nt">&gt;</span>
+
+		<span class="nt">&lt;figcaption</span> <span class="na">itemprop=</span><span class="s">"caption description"</span><span class="nt">&gt;</span>
+			Long image description
+
+			<span class="c">&lt;!-- optionally define copyright --&gt;</span>
+			<span class="nt">&lt;span</span> <span class="na">itemprop=</span><span class="s">"copyrightHolder"</span><span class="nt">&gt;</span>Photo: AP<span class="nt">&lt;/span&gt;</span>
+		<span class="nt">&lt;/figcaption&gt;</span>
+	<span class="nt">&lt;/figure&gt;</span>
+
+	<span class="nt">&lt;figure</span> <span class="na">itemprop=</span><span class="s">"associatedMedia"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ImageObject"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"large-image.jpg"</span> <span class="na">itemprop=</span><span class="s">"contentUrl"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"small-image.jpg"</span> <span class="na">itemprop=</span><span class="s">"thumbnail"</span> <span class="na">alt=</span><span class="s">"Image description"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+		<span class="nt">&lt;figcaption</span> <span class="na">itemprop=</span><span class="s">"caption description"</span><span class="nt">&gt;</span>Long image description<span class="nt">&lt;/figcaption&gt;</span>
+	<span class="nt">&lt;/figure&gt;</span>
+
+	...
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>If you don’t want thumbnails to be visible on page, e.g. you have 50 images in gallery and you show just first 3 thumbnails + link “view all images (50)”, you definitely should use <a href="http://schema.org/ImageGallery">Schema.org markup</a> and you should have all 50 links (with text in contents of link element instead of thumbnail) in DOM (you may hide them with <code class="language-plaintext highlighter-rouge">display:none</code>). Example:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ImageGallery"</span><span class="nt">&gt;</span>
+
+	<span class="nt">&lt;figure</span> <span class="na">itemprop=</span><span class="s">"associatedMedia"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ImageObject"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"large-image-1.jpg"</span> <span class="na">itemprop=</span><span class="s">"contentUrl"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;figcaption</span> <span class="na">itemprop=</span><span class="s">"caption description"</span><span class="nt">&gt;</span>Long image description 1<span class="nt">&lt;/figcaption&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+	<span class="nt">&lt;/figure&gt;</span>
+
+	<span class="nt">&lt;figure</span> <span class="na">itemprop=</span><span class="s">"associatedMedia"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ImageObject"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"large-image-2.jpg"</span> <span class="na">itemprop=</span><span class="s">"contentUrl"</span><span class="nt">&gt;</span>
+		    <span class="nt">&lt;figcaption</span> <span class="na">itemprop=</span><span class="s">"caption description"</span><span class="nt">&gt;</span>Long image description 2<span class="nt">&lt;/figcaption&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+	<span class="nt">&lt;/figure&gt;</span>
+
+	...
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>In all above cases, <code class="language-plaintext highlighter-rouge">large-image.jpg</code> will be perfectly indexed. The caption element will be crawled even if you hide it with <code class="language-plaintext highlighter-rouge">display:none</code>, just keep the text relevant, non-spammy – don’t stuff it with keywords.</p>
+
+<h3 id="additional-recommendations">Additional recommendations</h3>
+
+<ul>
+  <li>Keep <code class="language-plaintext highlighter-rouge">alt</code> attribute short and descriptive. Leave long description for caption element.</li>
+  <li><a href="https://support.google.com/webmasters/answer/114016">Google image publishing guidelines</a>.</li>
+  <li>Use <a href="https://developers.google.com/webmasters/structured-data/testing-tool/">Google</a> or <a href="https://webmaster.yandex.com/microtest.xml">Yandex</a> structured data testing tool to validate your Schema.org markup.</li>
+  <li>High-resolution images rank better, usually 1680px on a wider side is more than enough.</li>
+  <li>Image caption that is visible on initial page load will always rank better than hidden one. A good example of gallery layout that manages to keep both thumbnails and caption visible initially on page is <a href="http://www.theguardian.com/science/gallery/2015/mar/13/satellites-as-youve-never-seen-them-before-in-pictures">the new Guardian gallery page</a>.</li>
+  <li>Optimize images size and format:
+    <ul>
+      <li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization">Good guide by Ilya Grigorik</a>.</li>
+      <li>Tools: for Mac there is <a href="https://imageoptim.com/">ImageOptim</a>, for Windows – <a href="http://nikkhokkho.sourceforge.net/static.php?page=FileOptimizer">FileOptimizer</a> or <a href="http://www.jpegmini.com/windows">JPEGmini</a> (limited lite version). Also, there are a lot of server-side/command-line tools like <a href="http://www.imagemagick.org/">ImageMagick</a> or <a href="http://jpegclub.org/jpegtran/">jpegtran</a>.</li>
+      <li>If you serve different images for high-DPI (e.g. retina) screens, reduce their JPEG quality to 20-40% to save file size, <a href="http://www.netvlies.nl/blog/design-interactie/retina-revolution">good article about this</a>.</li>
+    </ul>
+  </li>
+  <li>You don’t need to create image sitemap if you have links to images or/and valid Schema.org markup, but it can help you <a href="http://webmasters.stackexchange.com/a/5151">track how well they are indexed</a>.</li>
+  <li>Feel free to use <code class="language-plaintext highlighter-rouge">srcset</code> or <code class="language-plaintext highlighter-rouge">&lt;picture&gt;</code> for thumbnails.</li>
+  <li>Be careful with number of thumbnails on a gallery page, slow page load speed can hurt rankings.</li>
+  <li>Search engines index the direct link to the image file quite well, especially with Schema.org markup. But having a separate HTML page for each image is better when it has a descriptive and unique title, description and comments.</li>
+</ul>
+
+<p>Know how this page can be improved? <a href="https://github.com/dimsemenov/PhotoSwipe/blob/master/website/documentation/seo.md">Please suggest an edit!</a></p>
+
+:ET

@@ -1,0 +1,25 @@
+I"�<h2 id="animations">Animations</h2>
+
+<ul>
+  <li>Animation performance dramatically depends on the size of an image. The smaller image – the smoother animation. So don’t be lazy and <a href="responsive-images.html">serve responsive images</a>, or at least don’t serve images larger than 1200x1200 for phones.</li>
+  <li>Don’t do anything during the animations that can cause Paint or Layout. Don’t append new elements to the DOM. Don’t change <code class="language-plaintext highlighter-rouge">display</code> or <code class="language-plaintext highlighter-rouge">visibility</code>. Don’t breath. You can only change <code class="language-plaintext highlighter-rouge">transform</code> and <code class="language-plaintext highlighter-rouge">opacity</code>. Delay all your changes after animation ends – use events: <code class="language-plaintext highlighter-rouge">beforeChange</code> (slide switched), <code class="language-plaintext highlighter-rouge">initialZoomInEnd</code> (initial zoom in animation ended) and <code class="language-plaintext highlighter-rouge">initialZoomOutEnd</code> (initial zoom out animation ended).</li>
+  <li>Try to avoid complex <code class="language-plaintext highlighter-rouge">:hover</code> and <code class="language-plaintext highlighter-rouge">:active</code> effects on thumbnails that open PhotoSwipe if you have zoom-in/out animation enabled (apply the first rule).</li>
+  <li>Make sure that you don’t have complex styles on UI over PhotoSwipe sliding area. For example, <code class="language-plaintext highlighter-rouge">text-shadow</code> on caption text can cause issues.</li>
+</ul>
+
+<p>If you followed above steps and performance of your gallery differs from <a href="http://photoswipe.com">PhotoSwipe home page</a>, start isolating PhotoSwipe on page by excluding all JS/CSS/HTML code not related to it. Make sure that you don’t have any kind of banner rotators that continuously run some animation behind the PhotoSwipe.</p>
+
+<p>If it doesn’t work fast even after you isolated PhotoSwipe – open an <a href="https://github.com/dimsemenov/PhotoSwipe/issues">issue on GitHub</a> and provide a link to <a href="http://css-tricks.com/reduced-test-cases/">reduced test case</a>.</p>
+
+<h2 id="including-files">Including Files</h2>
+
+<ul>
+  <li>Default PhotoSwipe UI has <code class="language-plaintext highlighter-rouge">png</code> and <code class="language-plaintext highlighter-rouge">svg</code> sprite. By default, it’s loaded only after PhotoSwipe is opened. To make controls appear instantly, you may merge gallery sprite with your site “main” sprite, or preload it via CSS.</li>
+  <li>Defer the loading of PhotoSwipe JS file(s) if gallery is not the main feature of your page.</li>
+  <li>Combine JS, minify and combine CSS files.</li>
+</ul>
+
+<p>Know how this page can be improved? <a href="https://github.com/dimsemenov/PhotoSwipe/blob/master/website/documentation/responsive-images.md">Suggest an edit!</a></p>
+
+<iframe src="http://ghbtns.com/github-btn.html?user=dimsemenov&amp;repo=photoswipe&amp;type=watch&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="155" height="30" style=""></iframe>
+:ET

@@ -1,0 +1,60 @@
+I"�<p>To make PhotoSwipe display HTML content in slides you need to define <code class="language-plaintext highlighter-rouge">html</code> property in slide object. It should contain HTML string or DOM element object.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="c1">// slide 1 with HTML</span>
+	<span class="p">{</span>
+		<span class="na">html</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;div&gt;&lt;h1&gt;Any HTML &lt;a href="http://example.com"&gt;content&lt;/a&gt;&lt;/h1&gt;&lt;/div&gt;</span><span class="dl">'</span>
+	<span class="p">},</span>
+
+	<span class="c1">// slide 2 with image</span>
+	<span class="p">{</span>
+		<span class="na">src</span><span class="p">:</span> <span class="dl">'</span><span class="s1">path/to/image.jpg</span><span class="dl">'</span><span class="p">,</span>
+		<span class="na">w</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span>
+		<span class="na">h</span><span class="p">:</span><span class="mi">200</span>
+	<span class="p">}</span>
+<span class="p">];</span>
+
+
+<span class="c1">// initialise as usual</span>
+<span class="kd">var</span> <span class="nx">gallery</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PhotoSwipe</span><span class="p">(</span> <span class="nx">pswpElement</span><span class="p">,</span> <span class="nx">PhotoSwipeUI_Default</span><span class="p">,</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+
+<span class="c1">// You don't necessarily need to have "html" property in slide object initially.</span>
+<span class="c1">// You may create it dynamically in gettingData event:</span>
+<span class="cm">/*
+	gallery.listen('gettingData', function(index, item) {
+		if(index === 3) {
+			item.html = '&lt;div&gt;Dynamically generated HTML ' + Math.random() + '&lt;/div&gt;';
+		}
+
+	});
+*/</span>
+
+<span class="c1">// Note that init() method is called after gettingData event is bound</span>
+<span class="nx">gallery</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Additional important notes:</p>
+
+<ul>
+  <li>To avoid conflicts with third-party modules, slide that has <code class="language-plaintext highlighter-rouge">html</code> property, should not have <code class="language-plaintext highlighter-rouge">src</code> (image) property.</li>
+  <li>PhotoSwipe is designed for images, not as a scroller of text content. Use “custom HTML” feature as an addition, for example for slide with related galleries, an introductory slide, or advertisements BETWEEN images.</li>
+  <li>It’s strongly not recommended to add video or audio elements using this method (including YouTube, Vimeo etc. iframes). As HTML5 video blocks touch events over it in many mobile browsers (user won’t be able to swipe it). If you really need to have video in PhotoSwipe, you may add it as modal that appears when user taps on current slide, you can dynamically create modal in DOM and append it after <code class="language-plaintext highlighter-rouge">.pswp__scroll-wrap</code> element.</li>
+  <li>If you have initial zoom-in/zoom-out transition enabled, PhotoSwipe will automatically disable it if current slide has <code class="language-plaintext highlighter-rouge">html</code>, simple fade transition will be used instead.</li>
+  <li>By default PhotoSwipe will allow click event just on links (<code class="language-plaintext highlighter-rouge">&lt;a&gt;</code>) and their child elements. To change this behavior look into <code class="language-plaintext highlighter-rouge">isClickableElement</code> option or <code class="language-plaintext highlighter-rouge">preventDragEvent</code> event.</li>
+  <li>Zoom of HTML slides is not supported, yet.</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="codepen-embed">
+	<p data-height="600" data-theme-id="10447" data-slug-hash="MYexrm" data-default-tab="result" data-user="dimsemenov" class="codepen">
+		<a href="http://codepen.io/dimsemenov/pen/MYexrm/" target="_blank"><strong>View example on CodePen &rarr;</strong></a>
+	</p>
+</div>
+
+<p>Tip: you may download the example from CodePen to play with it locally (<code class="language-plaintext highlighter-rouge">Edit on CodePen</code> -&gt; <code class="language-plaintext highlighter-rouge">Share</code> -&gt; <code class="language-plaintext highlighter-rouge">Export .zip</code>).</p>
+
+<p>Know how this page can be improved? <a href="https://github.com/dimsemenov/PhotoSwipe/blob/master/website/documentation/custom-html-in-slides.md">Suggest an edit!</a></p>
+
+:ET

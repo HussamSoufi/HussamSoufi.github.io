@@ -1,0 +1,293 @@
+I"Cc<p>All methods and properties listed on this page are public. If you want to take a look at example of what API can do, take a look in <a href="https://github.com/dimsemenov/PhotoSwipe/blob/master/src/js/ui/photoswipe-ui-default.js">source of default PhotoSwipe UI</a>.</p>
+
+<p>You can get PhotoSwipe instance object during the initialization, e.g.:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">photoswipeInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PhotoSwipe</span><span class="p">(</span> <span class="cm">/* ... */</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="methods">Methods</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pswp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PhotoSwipe</span><span class="p">(</span> <span class="cm">/* ... */</span> <span class="p">);</span>
+
+<span class="c1">// Initialize and open gallery</span>
+<span class="c1">// (you can bind events before this method)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+
+<span class="c1">// Go to slide by index</span>
+<span class="c1">// @param {int} `index`</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">goTo</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+
+<span class="c1">// Go to the next slide</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+
+<span class="c1">// Go to the previous slide</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">prev</span><span class="p">();</span>
+
+<span class="c1">// Update gallery size</span>
+<span class="c1">// @param  {boolean} `force` If you set it to `true`, </span>
+<span class="c1">// 							size of the gallery will be updated </span>
+<span class="c1">// 							even if viewport size hasn't changed.</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">updateSize</span><span class="p">(</span><span class="nx">force</span><span class="p">);</span>
+
+<span class="c1">// Close gallery</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+
+<span class="c1">// Destroy gallery,</span>
+<span class="c1">// automatically called after close() </span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">destroy</span><span class="p">()</span>
+
+<span class="c1">// Zoom current slide to (optionally with animation)</span>
+<span class="c1">// @param  {number}   `destZoomLevel` Destination scale number. 1 - original.  </span>
+<span class="c1">// 								     pswp.currItem.fitRatio - image will fit into viewport.</span>
+<span class="c1">// @param  {object}   `centerPoint`   Object of x and y coordinates, relative to viewport.</span>
+<span class="c1">// @param  {int}      `speed`         Animation duration. Can be 0.</span>
+<span class="c1">// @param  {function} `easingFn`      Easing function (optional). Set to false to use default easing.</span>
+<span class="c1">// @param  {function} `updateFn`      Function will be called on each update frame. (optional)</span>
+<span class="c1">//</span>
+<span class="c1">// Example below will 2x zoom to center of slide:</span>
+<span class="c1">// pswp.zoomTo(2, {x:pswp.viewportSize.x/2,y:pswp.viewportSize.y/2}, 2000, false, function(now) {</span>
+<span class="c1">// 		</span>
+<span class="c1">// });</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">zoomTo</span><span class="p">(</span><span class="nx">destZoomLevel</span><span class="p">,</span> <span class="nx">centerPoint</span><span class="p">,</span> <span class="nx">speed</span><span class="p">,</span> <span class="nx">easingFn</span><span class="p">,</span> <span class="nx">updateFn</span><span class="p">);</span>
+
+<span class="c1">// Apply zoom and pan to the current slide</span>
+<span class="c1">// </span>
+<span class="c1">// @param   {number} `zoomLevel`</span>
+<span class="c1">// @param   {int}    `panX`</span>
+<span class="c1">// @param   {int}    `panY`</span>
+<span class="c1">// </span>
+<span class="c1">// For example: `pswp.applyZoomPan(1, 0, 0)`</span>
+<span class="c1">// will zoom current image to the original size</span>
+<span class="c1">// and will place it on top left corner</span>
+<span class="c1">// </span>
+<span class="c1">// </span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">applyZoomPan</span><span class="p">(</span><span class="nx">zoomLevel</span><span class="p">,</span> <span class="nx">panX</span><span class="p">,</span> <span class="nx">panY</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="properties">Properties</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// current slide object</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">currItem</span>
+
+<span class="c1">// items array (slides, images)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">items</span>
+
+<span class="c1">// size of sliding viewport</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">viewportSize</span>
+
+<span class="c1">// object holds all functions from framework</span>
+<span class="c1">// framework-bridge.js</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">framework</span>
+
+<span class="c1">// UI object (e.g. PhotoSwipeUI_Default instance)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">ui</span>
+
+<span class="c1">// background element (pswp__bg)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">bg</span>
+
+<span class="c1">// container element (pswp__container)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">container</span>
+
+<span class="c1">// options</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">options</span>
+
+
+
+<span class="c1">// Even though methods below aren't technically properties, we list them here:</span>
+
+<span class="c1">// current item index (int)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">getCurrentIndex</span><span class="p">();</span>
+
+<span class="c1">// total number of items</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">getNumItemsFn</span><span class="p">()</span>
+
+<span class="c1">// current zoom level (number)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">getZoomLevel</span><span class="p">();</span>
+
+<span class="c1">// one (or more) pointer is used</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">isDragging</span><span class="p">();</span>
+
+<span class="c1">// two (or more) pointers are used</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">isZooming</span><span class="p">();</span>
+
+<span class="c1">// `true` when transition between is running (after swipe)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">isMainScrollAnimating</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="events">Events</h2>
+
+<p>PhotoSwipe uses very simple Event/Messaging system. It has two methods <code class="language-plaintext highlighter-rouge">shout</code> (triggers event) and <code class="language-plaintext highlighter-rouge">listen</code> (handles event). For now there is no method to unbind listener, but all of them are cleared when PhotoSwipe is closed.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pswp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PhotoSwipe</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">);</span>
+
+<span class="c1">// Listen for "helloWorld" event</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Name is: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Trigger "helloWorld" event</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">shout</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span> <span class="cm">/* you may pass more arguments */</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Available events:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// Before slides change</span>
+<span class="c1">// (before the content is changed, but after navigation)</span>
+<span class="c1">// Update UI here (like "1 of X" indicator)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">beforeChange</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// After slides change</span>
+<span class="c1">// (after content changed)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">afterChange</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Image loaded</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">imageLoadComplete</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span> 
+	<span class="c1">// index - index of a slide that was loaded</span>
+	<span class="c1">// item - slide object</span>
+<span class="p">});</span>
+
+<span class="c1">// Viewport size changed</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Triggers when PhotoSwipe "reads" slide object data,</span>
+<span class="c1">// which happens before content is set, or before lazy-loading is initiated.</span>
+<span class="c1">// Use it to dynamically change properties</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">gettingData</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// index - index of a slide that was loaded</span>
+	<span class="c1">// item - slide object</span>
+
+	<span class="c1">// e.g. change path to the image based on `something`</span>
+	<span class="k">if</span><span class="p">(</span> <span class="nx">something</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="nx">item</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">something</span><span class="p">;</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">item</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">somethingElse</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Mouse was used (triggers only once)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">mouseUsed</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+
+<span class="c1">// Opening zoom in animation starting</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">initialZoomIn</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Opening zoom in animation finished</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">initialZoomInEnd</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Closing zoom out animation started</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">initialZoomOut</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Closing zoom out animation finished</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">initialZoomOutEnd</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+
+<span class="c1">// Allows overriding vertical margin for individual items</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">parseVerticalMargin</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> 
+	<span class="c1">// For example:</span>
+	<span class="kd">var</span> <span class="nx">gap</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">vGap</span><span class="p">;</span>
+
+	<span class="nx">gap</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span> <span class="c1">// There will be 50px gap from top of viewport</span>
+	<span class="nx">gap</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// and 100px gap from the bottom</span>
+<span class="p">})</span>
+
+<span class="c1">// Gallery starts closing</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Gallery unbinds events</span>
+<span class="c1">// (triggers before closing animation)</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">unbindEvents</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// After gallery is closed and closing animation finished.</span>
+<span class="c1">// Clean up your stuff here.</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">destroy</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">});</span>
+
+<span class="c1">// Called when the page scrolls.</span>
+<span class="c1">// The callback is passed an offset with properties {x: number, y: number}.</span>
+<span class="c1">//</span>
+<span class="c1">// PhotoSwipe uses the offset to determine the top-left of the template,</span>
+<span class="c1">// which by default is the top-left of the viewport. When using modal: false,</span>
+<span class="c1">// you should listen to this event (before calling .init()) and modify the offset</span>
+<span class="c1">// with the template's getBoundingClientRect().</span>
+<span class="c1">//</span>
+<span class="c1">// Look at the "Implementing inline gallery display" FAQ section for more info.</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">updateScrollOffset</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_offset</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">gallery</span><span class="p">.</span><span class="nx">template</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+    <span class="nx">_offset</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">left</span><span class="p">;</span>
+    <span class="nx">_offset</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">top</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// PhotoSwipe has a special event called pswpTap.</span>
+<span class="c1">// It's dispatched using default JavaScript event model.</span>
+<span class="c1">// So you can, for example, call stopPropagation on it.</span>
+<span class="c1">// pswp.framework.bind - is a shorthand for addEventListener</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">framework</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span> <span class="nx">pswp</span><span class="p">.</span><span class="nx">scrollWrap</span> <span class="cm">/* bind on any element of gallery */</span><span class="p">,</span> <span class="dl">'</span><span class="s1">pswpTap</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">tap</span><span class="dl">'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">detail</span><span class="p">);</span>
+    <span class="c1">// e.detail.origEvent  // original event that finished tap (e.g. mouseup or touchend)</span>
+    <span class="c1">// e.detail.target // e.target of original event</span>
+    <span class="c1">// e.detail.releasePoint // object with x/y coordinates of tap</span>
+    <span class="c1">// e.detail.pointerType // mouse, touch, or pen</span>
+<span class="p">});</span>
+
+<span class="c1">// Allow to call preventDefault on down and up events</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">preventDragEvent</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">isDown</span><span class="p">,</span> <span class="nx">preventObj</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// e - original event</span>
+	<span class="c1">// isDown - true = drag start, false = drag release</span>
+
+	<span class="c1">// Line below will force e.preventDefault() on:</span>
+	<span class="c1">// touchstart/mousedown/pointerdown events</span>
+	<span class="c1">// as well as on:</span>
+	<span class="c1">// touchend/mouseup/pointerup events</span>
+	<span class="nx">preventObj</span><span class="p">.</span><span class="nx">prevent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">});</span>
+
+
+
+<span class="c1">// Default UI events</span>
+<span class="c1">// -------------------------</span>
+
+<span class="c1">// Share link clicked</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="dl">'</span><span class="s1">shareLinkClick</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span> 
+	<span class="c1">// e - original click event</span>
+	<span class="c1">// target - link that was clicked</span>
+
+	<span class="c1">// If `target` has `href` attribute and </span>
+	<span class="c1">// does not have `download` attribute - </span>
+	<span class="c1">// share modal window will popup</span>
+<span class="p">});</span>
+
+
+</code></pre></div></div>
+
+<h2 id="adding-slides-dynamically">Adding slides dynamically</h2>
+
+<p>To add, edit, or remove slides after PhotoSwipe is opened, you just need to modify the <code class="language-plaintext highlighter-rouge">items</code> array. For example, you can push new slide objects into the <code class="language-plaintext highlighter-rouge">items</code> array:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pswp</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+    <span class="na">src</span><span class="p">:</span> <span class="dl">"</span><span class="s2">path/to/image.jpg</span><span class="dl">"</span><span class="p">,</span> 
+    <span class="na">w</span><span class="p">:</span><span class="mi">1200</span><span class="p">,</span>
+    <span class="na">h</span><span class="p">:</span><span class="mi">500</span> 
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>If you changed slide that is CURRENT, NEXT or PREVIOUS (which you should try to avoid) – you need to call method that will update their content:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// sets a flag that slides should be updated</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">invalidateCurrItems</span><span class="p">();</span>
+<span class="c1">// updates the content of slides</span>
+<span class="nx">pswp</span><span class="p">.</span><span class="nx">updateSize</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Otherwise, you don’t need to do anything else. Except, maybe, calling <code class="language-plaintext highlighter-rouge">pswp.ui.update()</code> if you want some parts of default UI to update (e.g. “1 of X” counter). Also note:</p>
+
+<ul>
+  <li>You can’t reassign whole array, you can only modify it (e.g. use <code class="language-plaintext highlighter-rouge">splice</code> to remove elements).</li>
+  <li>If you’re going to remove current slide – call <code class="language-plaintext highlighter-rouge">goTo</code> method before.</li>
+  <li>There must be at least one slide.</li>
+  <li>This technique is used to <a href="responsive-images.html">serve responsive images</a>.</li>
+</ul>
+
+<p>Some method or property is missing? Found a grammatical mistake? Know how this page can be improved? <a href="https://github.com/dimsemenov/PhotoSwipe/blob/master/website/documentation/api.md">Please suggest an edit!</a></p>
+
+:ET
