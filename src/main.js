@@ -1,6 +1,10 @@
 import App from './components/App.js'
 import LennyApp from './components/LennyApp.js'
 import logger from './utils/logger.js'
+import performanceMonitor from './utils/performance.js'
+import errorHandler from './utils/errorHandler.js'
+import accessibilityUtils from './utils/accessibility.js'
+import appConfig from './config/appConfig.js'
 
 /**
  * Main entry point for the application
@@ -17,7 +21,31 @@ class Main {
    */
   async init() {
     try {
+      const startTime = performanceMonitor.startTiming('app-init')
+      
       this.logger.info('Starting main application...')
+      
+      // Initialize configuration
+      appConfig.updateFromEnvironment()
+      const configErrors = appConfig.validate()
+      if (configErrors.length > 0) {
+        this.logger.warn('Configuration validation errors:', configErrors)
+      }
+      
+      // Setup accessibility features
+      if (appConfig.get('ui.enableAccessibility')) {
+        accessibilityUtils.addSkipLink('main-content', 'Skip to main content')
+        this.logger.info('Accessibility features enabled')
+      }
+      
+      // Setup performance monitoring
+      if (appConfig.get('performance.enableMonitoring')) {
+        performanceMonitor.monitorPageLoad()
+        if (appConfig.get('performance.enableWebVitals')) {
+          performanceMonitor.measureWebVitals()
+        }
+        this.logger.info('Performance monitoring enabled')
+      }
       
       // Determine which app to initialize based on current page
       const currentPath = window.location.pathname
@@ -32,13 +60,17 @@ class Main {
         this.logger.info('Main application initialized')
       }
       
-      // Setup global error handling
-      this.setupErrorHandling()
+      // Track successful initialization
+      performanceMonitor.trackInteraction('app-initialized', {
+        path: currentPath,
+        timestamp: Date.now()
+      })
       
+      performanceMonitor.endTiming('app-init')
       this.logger.info('Application startup completed successfully')
       
     } catch (error) {
-      this.logger.error('Failed to initialize application', error)
+      errorHandler.handleError('Application Initialization', error)
       this.showErrorFallback()
     }
   }

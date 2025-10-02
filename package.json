@@ -63,6 +63,10 @@
         "gulp-sourcemaps": "^3.0.0",
         "gulp-babel": "^8.0.0",
         "@babel/core": "^7.23.9",
-        "@babel/preset-env": "^7.23.9"
+        "@babel/preset-env": "^7.23.9",
+        "gulp-eslint": "^6.0.0",
+        "gulp-jest": "^1.0.0",
+        "babel-jest": "^29.7.0",
+        "jsdom-global": "^3.0.2"
     }
 }
