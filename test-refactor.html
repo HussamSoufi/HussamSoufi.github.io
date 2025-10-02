@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactored Code Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        #log-output { background: #f8f9fa; padding: 10px; border-radius: 5px; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>Refactored Code Test Page</h1>
+    
+    <div class="test-section">
+        <h2>Logger Test</h2>
+        <button onclick="testLogger()">Test Logger</button>
+        <div id="logger-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>DOM Utils Test</h2>
+        <button onclick="testDOMUtils()">Test DOM Utils</button>
+        <div id="dom-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>App Component Test</h2>
+        <button onclick="testApp()">Test App Component</button>
+        <div id="app-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Log Output</h2>
+        <div id="log-output"></div>
+    </div>
+
+    <!-- Mock dependencies for testing -->
+    <script>
+        // Mock console methods to capture output
+        const originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            info: console.info,
+            error: console.error,
+            debug: console.debug
+        };
+        
+        const logOutput = document.getElementById('log-output');
+        
+        function addLog(type, message) {
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `<strong>[${type}]</strong> ${message}`;
+            logEntry.style.marginBottom = '5px';
+            logOutput.appendChild(logEntry);
+            logOutput.scrollTop = logOutput.scrollHeight;
+        }
+        
+        console.log = (...args) => {
+            originalConsole.log(...args);
+            addLog('LOG', args.join(' '));
+        };
+        
+        console.warn = (...args) => {
+            originalConsole.warn(...args);
+            addLog('WARN', args.join(' '));
+        };
+        
+        console.info = (...args) => {
+            originalConsole.info(...args);
+            addLog('INFO', args.join(' '));
+        };
+        
+        console.error = (...args) => {
+            originalConsole.error(...args);
+            addLog('ERROR', args.join(' '));
+        };
+        
+        console.debug = (...args) => {
+            originalConsole.debug(...args);
+            addLog('DEBUG', args.join(' '));
+        };
+    </script>
+
+    <!-- Load our refactored modules -->
+    <script type="module">
+        // Import our modules
+        import logger from './src/utils/logger.js';
+        import domUtils from './src/utils/domUtils.js';
+        import App from './src/components/App.js';
+        
+        // Make them globally available for testing
+        window.logger = logger;
+        window.domUtils = domUtils;
+        window.App = App;
+        
+        // Test functions
+        window.testLogger = function() {
+            const result = document.getElementById('logger-result');
+            try {
+                logger.info('Testing logger functionality');
+                logger.warn('This is a warning message');
+                logger.error('This is an error message');
+                logger.debug('This is a debug message');
+                
+                // Test log level filtering
+                logger.setLevel('WARN');
+                logger.info('This should not appear');
+                logger.warn('This should appear');
+                
+                result.innerHTML = '<div class="success">✅ Logger tests passed!</div>';
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Logger test failed: ${error.message}</div>`;
+            }
+        };
+        
+        window.testDOMUtils = function() {
+            const result = document.getElementById('dom-result');
+            try {
+                // Create test elements
+                const testDiv = document.createElement('div');
+                testDiv.id = 'test-dom-element';
+                testDiv.style.display = 'none';
+                document.body.appendChild(testDiv);
+                
+                // Test getElementById
+                const element = domUtils.getElementById('test-dom-element');
+                if (!element) throw new Error('getElementById failed');
+                
+                // Test showElement
+                domUtils.showElement('test-dom-element', 'slideInLeft');
+                if (element.style.display !== 'inherit') throw new Error('showElement failed');
+                
+                // Test setStyles
+                domUtils.setStyles(element, { color: 'red', fontSize: '16px' });
+                if (element.style.color !== 'red') throw new Error('setStyles failed');
+                
+                // Test isVisible
+                if (!domUtils.isVisible(element)) throw new Error('isVisible failed');
+                
+                // Clean up
+                document.body.removeChild(testDiv);
+                
+                result.innerHTML = '<div class="success">✅ DOM Utils tests passed!</div>';
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ DOM Utils test failed: ${error.message}</div>`;
+            }
+        };
+        
+        window.testApp = function() {
+            const result = document.getElementById('app-result');
+            try {
+                // Test App instantiation
+                const app = new App();
+                if (!app) throw new Error('App instantiation failed');
+                
+                // Test particles config
+                const config = app.getParticlesConfig();
+                if (!config.particles || !config.interactivity) {
+                    throw new Error('Particles config failed');
+                }
+                
+                // Test navigation methods
+                app.showAbout();
+                app.showWork();
+                app.showContact();
+                
+                result.innerHTML = '<div class="success">✅ App component tests passed!</div>';
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ App component test failed: ${error.message}</div>`;
+            }
+        };
+        
+        // Auto-run tests on page load
+        setTimeout(() => {
+            testLogger();
+            testDOMUtils();
+            testApp();
+        }, 1000);
+    </script>
+</body>
+</html>

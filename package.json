@@ -3,7 +3,14 @@
     "name": "startbootstrap-new-age",
     "version": "5.0.8",
     "scripts": {
-        "start": "node_modules/.bin/gulp watch"
+        "start": "node_modules/.bin/gulp watch",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "build": "node_modules/.bin/gulp build",
+        "dev": "node_modules/.bin/gulp watch",
+        "lint": "eslint . --ext .js",
+        "lint:fix": "eslint . --ext .js --fix"
     },
     "description": "A one page app landing page HTML theme for Bootstrap.",
     "keywords": [
@@ -46,6 +53,16 @@
         "gulp-rename": "2.0.0",
         "gulp-sass": "4.1.0",
         "gulp-uglify": "3.0.2",
-        "merge-stream": "2.0.0"
+        "merge-stream": "2.0.0",
+        "jest": "^29.7.0",
+        "eslint": "^8.57.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-jest": "^27.6.3",
+        "jsdom": "^23.0.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-babel": "^8.0.0",
+        "@babel/core": "^7.23.9",
+        "@babel/preset-env": "^7.23.9"
     }
 }
